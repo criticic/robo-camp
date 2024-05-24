@@ -1,0 +1,13 @@
+<launch>
+    <arg name="world_file" value="$(find custom_turtlebot_world)/worlds/robo.world"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_file)"/>
+    </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro"/> 
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+          args="-urdf -model turtlebot3_waffle -param robot_description -x 0 -y 0 -z 0.1"/>
+</launch>
+
